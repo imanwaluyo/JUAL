@@ -279,7 +279,8 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <script>
-    // === PENTING: GANTI URL DI BAWAH INI DENGAN URL WEB APP ANDA ===
+      <script>
+    // === PENTING: PASTIKAN URL INI BENAR ===
     const API_URL = 'https://script.google.com/macros/s/AKfycbzC3dcmrTJDiXh78LWU1jC7Ji4IBJeoHTaUnEtJAan5W0RFIqbzb8b1_niEgPUDg-YG/exec';
     
     document.addEventListener('DOMContentLoaded', function() {
@@ -371,7 +372,8 @@
       async function saveStoreProfile() {
         const data = { namaToko: document.getElementById('set_nama').value, alamat: document.getElementById('set_alamat').value, maps: document.getElementById('set_maps').value, telp: document.getElementById('set_telp').value, galeri: document.getElementById('set_galeri').value, promoText: document.getElementById('set_promo').value };
         try {
-          const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ apiAction: 'saveStoreProfile', data: data }) });
+          // PERBAIKAN CORS: Menggunakan text/plain
+          const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ apiAction: 'saveStoreProfile', data: data }) });
           const result = await res.json();
           if (result.success) { showToast('Setting toko disimpan', 'success'); loadData(); }
         } catch (err) { showToast('Error koneksi', 'error'); }
@@ -414,7 +416,6 @@
         const jthTempo = d.jthTempo || ''; 
         const toko = document.getElementById('namaToko').value || 'Toko Kami'; 
         
-        // Siapkan info rekening
         let bankInfo = '';
         if (appData.bank.length > 0) {
           bankInfo = '\n\n*Silakan transfer pembayaran ke:*\n';
@@ -442,7 +443,8 @@
 
       async function saveDataGeneric(sheetName, data, action, callback) {
         try {
-          const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ apiAction: 'saveData', sheetName, action, data }) });
+          // PERBAIKAN CORS: Menggunakan text/plain
+          const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ apiAction: 'saveData', sheetName, action, data }) });
           const result = await res.json();
           if (result.success) { showToast('Data berhasil disimpan', 'success'); loadData(); if (callback) callback(result); }
           else { showToast('Gagal menyimpan data', 'error'); }
@@ -481,7 +483,8 @@
       async function simpanTargetLaba() {
         const val = document.getElementById('targetLabaInput').value;
         try {
-          const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ apiAction: 'updateSetting', targetLaba: val }) });
+          // PERBAIKAN CORS: Menggunakan text/plain
+          const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ apiAction: 'updateSetting', targetLaba: val }) });
           const result = await res.json();
           if (result.success) { showToast('Target laba disimpan', 'success'); loadData(); }
         } catch (err) { showToast('Error koneksi', 'error'); }
@@ -550,6 +553,7 @@
 
       loadData();
     });
+  </script>
   </script>
 </body>
 </html>
