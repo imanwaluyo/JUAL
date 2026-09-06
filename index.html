@@ -32,7 +32,7 @@
     .nav-item { display: flex; align-items: center; gap: 12px; padding: 14px 24px; color: #a0a0a0; font-weight: 600; font-size: 13px; cursor: pointer; transition: var(--transition); border-left: 3px solid transparent; margin: 4px 8px; border-radius: 0 8px 8px 0; }
     .nav-item:hover { background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%); color: #fff; }
     .nav-item.active { background: linear-gradient(90deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%); color: #ffffff; border-left: 3px solid #d4d4d4; box-shadow: inset 2px 0 5px rgba(0,0,0,0.3); }
-    .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; pointer-events: none; }
     
     .main-content { margin-left: 260px; flex: 1; width: calc(100% - 260px); }
     
@@ -41,6 +41,7 @@
     .notif-wrapper { position: relative; }
     .notif-btn { position: relative; background: transparent; border: 1px solid var(--border); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: var(--transition); }
     .notif-btn:hover { background: var(--bg-subtle); border-color: var(--border-strong); }
+    .notif-btn svg { pointer-events: none; }
     .notif-badge { position: absolute; top: -5px; right: -5px; background: var(--danger); color: white; font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; border-radius: 999px; display: flex; align-items: center; justify-content: center; padding: 0 5px; border: 2px solid white; }
     .notif-dropdown { position: absolute; top: 50px; right: 0; width: 340px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); z-index: 300; opacity: 0; visibility: hidden; transform: translateY(10px); transition: var(--transition); }
     .notif-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
@@ -63,6 +64,7 @@
     .page-subtitle { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
     
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; border: 1px solid transparent; cursor: pointer; transition: var(--transition); text-decoration: none; }
+    .btn svg { pointer-events: none; }
     .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: var(--shadow-md); }
     .btn-secondary { background: var(--bg-elevated); color: var(--text); border-color: var(--border); }
@@ -71,6 +73,7 @@
     .btn-wa:hover { background: #15803d; transform: translateY(-1px); box-shadow: var(--shadow-md); }
     .btn-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid transparent; border-radius: 6px; cursor: pointer; color: var(--text-muted); transition: var(--transition); }
     .btn-icon:hover { background: var(--bg-subtle); color: var(--text); }
+    .btn-icon svg { pointer-events: none; }
     
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
     .stat-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
@@ -279,7 +282,6 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <script>
-      <script>
     // === PENTING: PASTIKAN URL INI BENAR ===
     const API_URL = 'https://script.google.com/macros/s/AKfycbzC3dcmrTJDiXh78LWU1jC7Ji4IBJeoHTaUnEtJAan5W0RFIqbzb8b1_niEgPUDg-YG/exec';
     
@@ -553,7 +555,6 @@
 
       loadData();
     });
-  </script>
   </script>
 </body>
 </html>
